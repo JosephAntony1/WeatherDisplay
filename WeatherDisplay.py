@@ -32,15 +32,19 @@ class WeatherDisplay(BaseMatrixAnim):
         self.font_name = font_name
         self.font_scale = font_scale
         self._strW = font.str_dim(text, font_name, font_scale, True)[0]
-        self._text=str((obs.get_weather().get_temperature('fahrenheit')['temp']))[0:6]
+        self._text=(str((obs.get_weather().get_temperature('fahrenheit')['temp_min']))[0:2]+":"+
+         str((obs.get_weather().get_temperature('fahrenheit')['temp']))[0:2]+ ":" +
+         str((obs.get_weather().get_temperature('fahrenheit')['temp_max']))[0:2])
         self.count = 0
         # Your initialization code goes here.
 
     def getWeather(self):
         owm = pyowm.OWM('1529be8c1919b4ef1703a9928139940f')
         obs = owm.weather_at_coords(39, -76.9501564922)
-        self._text=str((obs.get_weather().get_temperature('fahrenheit')['temp']))[0:6]
-        return obs
+        self._text=(str((obs.get_weather().get_temperature('fahrenheit')['temp_min']))[0:2]+":"+
+        str((obs.get_weather().get_temperature('fahrenheit')['temp']))[0:2]+ ":" +
+        str((obs.get_weather().get_temperature('fahrenheit')['temp_max']))[0:2])
+        return  obs
 
     def step(self, amt=1):
         if (self.count == 84):
@@ -57,8 +61,8 @@ class WeatherDisplay(BaseMatrixAnim):
 
         self.xPos -= amt
         if self.xPos + self._strW <= 0:
-            self.xPos = self.width - 1
-            self.animComplete = True
+             self.xPos = self.width - 1
+             self.animComplete = True
 
         self.count = self.count + 1
         self._step = 0
