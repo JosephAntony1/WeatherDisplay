@@ -11,12 +11,14 @@
 #
 # Using `shape` only works if you have a strip, a matrix, or a cube.
 # For more complex shapes, you will use the `layout` section
-layout:
-  height: 7
-  width: 42
-  typename: matrix
-  vert_flip: True
-  y_flip: True
+shape: [42,7]
+
+# layout:
+#   height: 7
+#   width: 42
+#   typename: matrix
+#   vert_flip: True
+#   y_flip: True
 
 # The `driver` section describes the hardware outputs you are using.
 #
@@ -25,14 +27,14 @@ layout:
 # hardware driver and its settings.
 
 driver:
-  #typename: simpixel
-  typename: spi
-  ledtype: LPD8806
-  num: 294
-  dev: /dev/spidev0.0
-  interface: PERIPHERY
-  spi_speed: 4
-  c_order: BRG
+  typename: simpixel
+  #typename: spi
+  #ledtype: LPD8806
+  #num: 294
+  #dev: /dev/spidev0.0
+  #interface: PERIPHERY
+  #spi_speed: 4
+  #c_order: BRG
 
 # This is the animation section, which describes how your lights change over
 # time.
